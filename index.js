@@ -1,7 +1,9 @@
 const express = require("express");
 const { connect } = require("./config/skatedb");
-const candidateRoutes = require("./api/routes/candidate.routes");
-
+const skateRoutes = require("./api/routes/skate.routes");
+const spotsRoutes = require("./api/routes/spots.routes");
+const usersRoutes = require("./api/routes/user.routes");
+const skatersRoutes = require("./api/routes/skaters.routes");
 const cors = require("cors");
 const logger = require("morgan");
 
@@ -43,7 +45,10 @@ server.use(logger("dev"));
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 
-server.use("/candidates", candidateRoutes);
+server.use("/spots", spotsRoutes);
+server.use("/users", usersRoutes);
+server.use("/shop", skateRoutes);
+server.use("/skaters", skatersRoutes);
 
 server.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`);
